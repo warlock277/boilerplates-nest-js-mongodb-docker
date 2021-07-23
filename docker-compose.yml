@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nest-mongo
+    container_name: nest-mongo
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "3000:3000"
+    command: npm run start:dev
+    volumes:
+      - ./:/usr/src/app/
+volumes:
+  dbdata:
